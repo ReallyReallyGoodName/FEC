@@ -1,0 +1,14 @@
+.star-graph-empty,.star-graph-full{
+  height: 10px;
+  width: 10px;
+  margin: 3px,0px;
+  outline: 1px;
+  display: inline-block;
+}
+.star-graph-empty{
+  background: gray;
+
+}
+.star-graph-full{
+  background: red;
+}
