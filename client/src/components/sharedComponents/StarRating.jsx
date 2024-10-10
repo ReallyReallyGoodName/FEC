@@ -10,7 +10,7 @@ const StarRating = ({ rating, ratingList, enableText = false, dimensions = 5 }) 
     averageRating = sum / totalRatings;
   } else {
     return <div>Error Loading Stars</div>;
-  }
+  }//test
 
   if (averageRating < 0 || averageRating > 5) { return <div>rating outside of range [0-5]</div>; }
 
