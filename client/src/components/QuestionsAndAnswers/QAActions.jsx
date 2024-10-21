@@ -12,7 +12,7 @@ const QAActions = ({
   return (
     <div className="question-actions">
       <h3>Q: {qa.question_body}</h3>
-      <div>
+      <div className="actions">
         <span>
           Helpful?
           {votedQA.questions.includes(qa.question_id) ? (
@@ -40,7 +40,6 @@ const QAActions = ({
         <a
           className="link"
           onClick={() => {
-            console.log("Add Answer clicked for question ID:", qa.question_id);
             setCurrentQuestionId(qa.question_id);
             setShowAnswerForm(true);
           }}

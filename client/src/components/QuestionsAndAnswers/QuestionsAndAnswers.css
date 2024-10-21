@@ -10,13 +10,13 @@ body {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  font-size: 24px;
+.qa-section h1 {
+  font-size: 23px;
+  color: #353535;
   margin-bottom: 20px;
-  text-align: center;
+  font-weight: bold;
 }
 
 .search-bar {
@@ -33,6 +33,7 @@ h1 {
   border: none;
   font-size: 16px;
   border-radius: 5px 0 0 5px;
+  font-weight:bold
 }
 
 .search-bar button {
@@ -53,7 +54,7 @@ h1 {
   overflow: visible;
 }
 
-.qa-item {
+.answer-group {
   padding-bottom: 20px;
   margin-bottom: 20px;
   border-bottom: 1px solid #e0e0e0;
@@ -62,11 +63,11 @@ h1 {
   padding-right: 10px;
 }
 
-.qa-item::-webkit-scrollbar {
+.answer-group::-webkit-scrollbar {
   width: 8px;
 }
 
-.qa-item::-webkit-scrollbar-thumb {
+.answer-group::-webkit-scrollbar-thumb {
   background-color: #adb3b9;
   border-radius: 4px;
 }
@@ -75,14 +76,20 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 15px;
   color: #555;
   gap: 10px;
+}
+
+
+.question-actions .actions .link {
+  font-size: 12px;
 }
 
 .question-actions span {
   padding-right: 5px;
   padding-left: 5px;
+  font-size: 12px;
 }
 
 .answer span{
@@ -118,6 +125,10 @@ h1 {
   color: #888;
 }
 
+.answer-item {
+  margin: 20px;
+}
+
 .actions a {
   text-decoration: underline;
 }
@@ -130,6 +141,11 @@ h1 {
   padding: 10px 0;
   border-top: 1px solid #e0e0e0;
   margin-top: 10px;
+}
+
+.answer-actions a {
+  color: rgb(50, 112, 228);
+  text-decoration: underline;
 }
 
 .actions {
@@ -148,18 +164,6 @@ button {
   margin: 10px;
 }
 
-button:hover {
-  background-color: #adb0b4;
-}
-
-button.add-question {
-  background-color: #abb0b4;
-}
-
-button.add-question:hover {
-  background-color: #005bb5;
-}
-
 button.more-questions {
   background-color: #f5f5f5;
   border: 1px solid #ccc;
@@ -170,29 +174,19 @@ button.more-questions:hover {
   background-color: #e0e0e0;
 }
 
-.bottom-buttons button {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
+button.add-question {
   background-color: #f5f5f5;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
+  border: 1px solid #ccc;
+  color: #333;
 }
 
-.bottom-buttons button:hover {
+button.add-question:hover {
   background-color: #e0e0e0;
 }
 
 
 
-.qa_form h3 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: bold;
-  color: #333;
-}
+
 
 .qa_form form {
   display: flex;
@@ -231,5 +225,19 @@ button.more-questions:hover {
 
 .qa_form button:hover {
   background-color: #bbb;
+}
+
+.answer-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 5px;
+}
+
+.thumbnail {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  cursor: pointer;
 }
 

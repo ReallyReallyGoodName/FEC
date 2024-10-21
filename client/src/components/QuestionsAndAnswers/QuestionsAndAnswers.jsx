@@ -121,7 +121,21 @@ const QuestionsAndAnswers = ({ productId }) => {
     if (votedQA.questions.includes(id)) return;
     axios
       .put(`/qa/questions/${id}/helpful`)
-      .then(() => updateQA(id, "questions"))
+      .then(() => {
+        setQuestionsAndAns((prev) => {
+          const updatedQuestion = prev.map((question) => {
+            if (question.question_id === id) {
+              return {
+                ...question,
+                question_helpfulness: question.question_helpfulness + 1,
+              };
+            }
+            return question;
+          });
+          return updatedQuestion;
+        });
+        updateQA(id, "questions");
+      })
       .catch(e => console.error(e));
   };
 
@@ -129,7 +143,25 @@ const QuestionsAndAnswers = ({ productId }) => {
     if (votedQA.answers.includes(id)) return;
     axios
       .put(`/qa/answers/${id}/helpful`)
-      .then(() => updateQA(id, "answers"))
+      .then(() => {
+        setQuestionsAndAns((prev) => {
+          const updatedAns = prev.map((question) => {
+            const curAnswers = { ...question.answers };
+            if (curAnswers[id]) {
+              curAnswers[id] = {
+                ...curAnswers[id],
+                helpfulness: curAnswers[id].helpfulness + 1,
+              };
+            }
+            return {
+              ...question,
+              answers: curAnswers,
+            };
+          });
+          return updatedAns;
+        });
+        updateQA(id, "answers");
+      })
       .catch(e => console.error(e));
   };
 
@@ -222,16 +254,18 @@ const QuestionsAndAnswers = ({ productId }) => {
                   setShowAnswerForm={setShowAnswerForm}
                 />
 
-                {answersArray.slice(0, visibleCount).map((answer, idx) => (
-                  <AnswerEntry
-                    key={idx}
-                    answer={answer}
-                    handleMarkAnsHelpful={handleMarkAnsHelpful}
-                    handleAnsReport={handleAnsReport}
-                    reportedQA={reportedQA}
-                    votedQA={votedQA}
-                  />
-                ))}
+                <div className="answer-group">
+                  {answersArray.slice(0, visibleCount).map((answer, idx) => (
+                    <AnswerEntry
+                      key={idx}
+                      answer={answer}
+                      handleMarkAnsHelpful={handleMarkAnsHelpful}
+                      handleAnsReport={handleAnsReport}
+                      reportedQA={reportedQA}
+                      votedQA={votedQA}
+                    />
+                  ))}
+                </div>
 
                 {answersArray.length > 2 && (
                   <a
@@ -277,14 +311,12 @@ const QuestionsAndAnswers = ({ productId }) => {
         </button>
       )}
 
-      <div className="bottom-buttons">
-        <button
-          className="add-question"
-          onClick={() => setShowAddQuestionForm(true)}
-        >
-          Question
-        </button>
-      </div>
+      <button
+        className="add-question"
+        onClick={() => setShowAddQuestionForm(true)}
+      >
+        Question
+      </button>
 
       {showQuestionForm && (
         <Modal
