@@ -31,7 +31,7 @@ const Card = ({ item, type, setProductId, setOutfitList, currentProduct }) => {
   };
 
   return (<span>
-    <Modal showModal={showComparison} onClose={() => setShowComparison(false)} modalClassName='comparison-modal'>
+    <Modal showModal={showComparison} onClose={() => setShowComparison(false)} >
       <CardComparison item1={currentProduct} item2={item} />
     </Modal>
     <div className="card-item" onClick={() => setProductId(product_id)}>
