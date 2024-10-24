@@ -58,5 +58,4 @@ const UploadImage = ({ formData, setFormData, setImageList, imageList }) => {
     </div>
   );
 };
-
 export default UploadImage;
